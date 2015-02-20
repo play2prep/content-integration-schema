@@ -1,5 +1,4 @@
 {
-  "id": "http://play2prep.github.io/content-integration-schema/question-schema#",
   "$schema": "http://json-schema.org/draft-04/schema#",
   "description": "The question content object has html display content to show the student, an answer key for offline grading, and metadata about the question. Html support is limited to <i>,<u>,<strong>,<em>,<b>, and <mark>. Question Content objects are fully self-contained, so all images must have inline data urls.",
   "type": "object",
