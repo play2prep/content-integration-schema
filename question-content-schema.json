@@ -1,0 +1,166 @@
+{
+  "id": "http://play2prep.github.io/content-integration-schema/question-schema#",
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "The question content object has html display content to show the student, an answer key for offline grading, and metadata about the question. Html support is limited to <i>,<u>,<strong>,<em>,<b>, and <mark>. Question Content objects are fully self-contained, so all images must have inline data urls.",
+  "type": "object",
+  "properties": {
+    "id": {"$ref": "#/definitions/QuestionId"},
+    "display": {
+      "type": "object",
+      "oneOf": [
+        {"$ref": "#/definitions/PlainParagraphs"},
+        {"$ref": "#/definitions/Narrative"}
+      ]
+    },
+    "answerKey": {
+      "type": "object",
+      "oneOf": [
+        {"$ref": "#/definitions/MultipleChoiceAnswerKey"},
+        {"$ref": "#/definitions/GridInAnswerKey"}
+      ]
+    },
+    "answerFormat": {
+      "enum": [
+        "MC",
+        "GRID"
+      ]
+    },
+    "meta": {"$ref": "#/definitions/QuestionClassifications"}
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "display",
+    "answerKey",
+    "answerFormat",
+    "meta"
+  ],
+  "definitions": {
+    "QuestionClassifications": {
+      "properties": {
+        "categories": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^\\w+(.*\\w+)*$"
+          }
+        },
+        "testType": {
+          "type": "string",
+          "pattern": "^\\w+$"
+        },
+        "difficulty": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "group": {
+          "description": "List of all questions in the same group as this question. It may or may not include this question's id.",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/QuestionId"
+          }
+        }
+      },
+      "required": [
+        "categories",
+        "testType",
+        "difficulty"
+      ],
+      "additionalProperties": false
+    },
+    "PlainParagraphs": {
+      "properties": {
+        "htmlParagraphs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^([^<^>]*(<img src=\"data:image\\/.*\"\\/?>)*((<(u|i|strong|em|b|mark)>)*[^<^>]*(<\\/\\5>))*)*$"
+          },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false,
+      "required": ["htmlParagraphs"]
+    },
+    "Narrative": {
+      "description": "This is a sequence of passages, and it's so large that it's displayed separately from the question instructions and answer input.",
+      "properties": {
+        "passages": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/definitions/Passage"}
+        },
+        "excerpt": {
+          "type": "string",
+          "pattern": "^([^<^>]*(<img src=\"data:image\\/.*\"\\/?>)*((<(u|i|strong|em|b|mark)>)*[^<^>]*(<\\/\\5>))*)*$"
+        }
+      },
+      "required": ["passages"],
+      "additionalProperties": false
+    },
+    "DisplayReference": {
+      "description": "Use the question display from another question. You can use this to canonicalize the Narrative or Passage for a group of questions.",
+      "properties": {
+        "refQuestionId": {"$ref": "#/definitions/QuestionId"}
+      },
+      "required": ["refQuestionId"],
+      "additionalProperties": false
+    },
+    "Passage": {
+      "description": "This is a text resource so large that it's displayed separately from the question instructions and answer input.  The instructions may reference a particular line in the passage, so each line is modeled separately, so that the view can ensure each line is labeled and distinguishable from all the other lines, on any form factor.",
+      "properties": {
+        "lines": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/definitions/PassageLine"}
+        },
+        "title": {"type": "string"}
+      },
+      "required": ["lines"],
+      "additionalProperties": false
+    },
+    "PassageLine": {
+      "description": "This supports limited html markup, so that you can underline and emphasize things, but the complete styling logic is not modeled here. All image data must be included in a data url, no http uris.",
+      "properties": {
+        "html": {
+          "type": "string",
+          "pattern": "^([^<^>]*(<img src=\"data:image\\/.*\"\\/?>)*((<(u|i|strong|em|b|mark)>)*[^<^>]*(<\\/\\5>))*)*$"
+        }
+      },
+      "required": ["html"],
+      "additionalProperties": false
+    },
+    "MultipleChoiceAnswerKey": {
+      "properties": {
+        "mcAnswer": {
+          "type": "string",
+          "pattern": "^[A-Z]$"
+        }
+      },
+      "required": ["mcAnswer"],
+      "additionalProperties": false
+    },
+    "GridInAnswerKey": {
+      "properties": {
+        "correctAnswers": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^[./0-9]{1,5}$"
+          }
+        }
+      },
+      "required": ["mcAnswer"],
+      "additionalProperties": false
+    },
+    "QuestionId": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9\\-_\\.]+$"
+    }
+  }
+}
