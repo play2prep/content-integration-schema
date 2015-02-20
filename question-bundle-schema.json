@@ -1,0 +1,29 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "A bundle of question content objects. This is the format of a question content file, and it's also used in a REST response, in the Content Provider API.",
+  "type": "object",
+  "properties": {
+    "questions": {
+      "type": "array",
+      "minItems": 0,
+      "items": {"$ref": "http://play2prep.github.io/content-integration-schema/question-content-schema.json#"}
+    },
+    "provider": {"$ref": "#/definitions/Provider"}
+  },
+  "additionalProperties": false,
+  "required": [
+    "questions",
+    "provider"
+  ],
+  "definitions": {
+    "Provider": {
+      "type": "object",
+      "properties": {
+        "providerId": {
+          "type": "string",
+          "pattern": "^\\w+$"
+        }
+      }
+    }
+  }
+}
