@@ -1,0 +1,89 @@
+{
+  "id": "SAT_T09_S06_CR.Q07",
+  "mcOptions": [
+    {
+      "label": "A",
+      "html": "Kant&#8217;s forgetfulness"
+    },
+    {
+      "label": "B",
+      "html": "Kant&#8217;s commitment to healthful practices"
+    },
+    {
+      "label": "C",
+      "html": "the dogmatic nature of Rousseau&#8217;s writings"
+    },
+    {
+      "label": "D",
+      "html": "the effect of Rousseau&#8217;s philosophy on Kant"
+    },
+    {
+      "label": "E",
+      "html": "Kant&#8217;s close friendship with Rousseau"
+    }
+  ],
+  "answerKey": {
+    "mcAnswer": "D"
+  },
+  "explanationHtml": "The passage says that Kant <i>forgot to take his. . . daily walk</i> because he <i>was so absorbed in reading Rousseau&#8217;s &#201;mile</i> (lines 14&#8211;16).",
+  "instructionsHtml": "<em>Read the passage and choose the best answer to the question.</em>",
+  "answerFormat": "MC",
+  "meta": {
+    "testType": "ACT",
+    "categories": [
+      "English",
+      "Passage Based Reading"
+    ],
+    "difficulty": 3
+  },
+  "display": {
+    "questionHtml": "Passage 1 mentions Kant&#8217;s &#8220;daily walk&#8221; (line 16) in order to emphasize",
+    "descriptionHtml": "<i>The following is from a recent commentary on Jean&#8211;Jacques Rousseau (1712&#8211;1778), a French philosopher during the Enlightenment.</i>",
+    "passages": [
+      {
+        "titleHtml": "Passage 1",
+        "linesHtml": [
+          "Taken as a whole, Rousseau&#8217;s writings attacked",
+          "the Age of Reason, gave impetus to the",
+          "Romantic movement by emphasizing feeling",
+          "(leading Goethe to say that &#8220;feeling is all&#8221;),",
+          "revived religion even though he had doubts",
+          "about some traditional teachings, provided a",
+          "new direction for education (his book <i>&#201;mile</i>",
+          "since Plato&#8217;s <i>Republic</i>), inspired the",
+          "French Revolution, made a unique impact on",
+          "political philosophy, and, more than the writing",
+          "of any of his contemporaries, influenced",
+          "several subsequent philosophers, especially",
+          "Immanuel Kant. On one occasion, Kant was",
+          "so absorbed in reading Rousseau&#8217;s <i>&#201;mile</i> that",
+          "he forgot to take his celebrated daily walk",
+          "While Kant admitted that it was David Hume",
+          "who awakened him from his dogmatic slumbers",
+          "regarding the theory of knowledge, it was",
+          "Rousseau who showed him the way to a new",
+          "theory of morality. So impressed was Kant by",
+          "the insights of Rousseau that he hung a picture",
+          "of him on the wall of his study, convinced that",
+          "Rousseau was the Newton of the moral world"
+        ]
+      }, {
+        "titleHtml": "Passage 2",
+        "linesHtml": [
+          "The roses we lay at Rousseau&#8217;s feet for this theory",
+          "of Natural Rights tend to overwhelm the",
+          "less fragrant of his ideas. He persisted in believing",
+          "in the nobility of the primitive state of",
+          "nature, and that women&#8217;s nature was to serve",
+          "men. His assertions about Natural Rights of",
+          "Man laid the philosophical foundation of",
+          "American independence, but his worship of",
+          "emotion over reason and of &#8220;negative education&#8221;",
+          "gave generations of parents permission to",
+          "ignore the need to discipline and teach their",
+          "children."
+        ]
+      }
+    ]
+  }
+}
