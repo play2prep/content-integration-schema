@@ -35,7 +35,11 @@
       "English",
       "Passage Based Reading"
     ],
-    "difficulty": 3
+    "difficulty": 3,
+    "time": {
+      "answerTimeSec": 180,
+      "deltaPct": 25
+    }
   },
   "display": {
     "questionHtml": "Passage 1 mentions Kant&#8217;s &#8220;daily walk&#8221; (line 16) in order to emphasize",
