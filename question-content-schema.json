@@ -38,6 +38,9 @@
     "explanationHtml": {
       "$ref": "#/definitions/HtmlFragment"
     },
+    "hintHtml": {
+      "$ref": "#/definitions/HtmlFragment"
+    },
     "meta": {"$ref": "#/definitions/QuestionClassifications"}
   },
   "additionalProperties": false,
@@ -47,6 +50,7 @@
     "answerKey",
     "answerFormat",
     "explanationHtml",
+    "hintHtml",
     "meta"
   ],
   "definitions": {
