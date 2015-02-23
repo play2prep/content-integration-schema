@@ -37,6 +37,9 @@
     "instructionsHtml": {
       "$ref": "#/definitions/HtmlFragment"
     },
+    "mainQuestionHtml": {
+      "$ref": "#/definitions/HtmlFragment"
+    },
     "explanationHtml": {
       "$ref": "#/definitions/HtmlFragment"
     },
@@ -48,10 +51,10 @@
   "additionalProperties": false,
   "required": [
     "id",
-    "display",
     "answerKey",
     "answerFormat",
     "explanationHtml",
+    "mainQuestionHtml",
     "hintHtml",
     "meta"
   ],
@@ -131,15 +134,9 @@
         },
         "descriptionHtml": {
           "$ref": "#/definitions/HtmlFragment"
-        },
-        "questionHtml": {
-          "$ref": "#/definitions/HtmlFragment"
         }
       },
-      "required": [
-        "passages",
-        "questionHtml"
-      ],
+      "required": [ "passages" ],
       "additionalProperties": false
     },
     "DisplayReference": {
