@@ -24,6 +24,14 @@
         "GRID"
       ]
     },
+    "instructionsHtml": {
+      "type": "string",
+      "pattern": "^([^<^>]*(<img src=\"data:image\\/.*\"\\/?>)*((<(u|i|strong|em|b|mark)>)*[^<^>]*(<\\/\\5>))*)*$"
+    },
+    "explanationHtml": {
+      "type": "string",
+      "pattern": "^([^<^>]*(<img src=\"data:image\\/.*\"\\/?>)*((<(u|i|strong|em|b|mark)>)*[^<^>]*(<\\/\\5>))*)*$"
+    },
     "meta": {"$ref": "#/definitions/QuestionClassifications"}
   },
   "additionalProperties": false,
@@ -32,6 +40,7 @@
     "display",
     "answerKey",
     "answerFormat",
+    "explanationHtml",
     "meta"
   ],
   "definitions": {
