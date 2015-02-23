@@ -24,6 +24,14 @@
         "GRID"
       ]
     },
+    "mcOptions": {
+      "description": "List of multiple choice answer options. This is required for all questions with the MC answer format.",
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "$ref": "#/definitions/MultipleChoiceAnswerOption"
+      }
+    },
     "instructionsHtml": {
       "type": "string",
       "pattern": "^([^<^>]*(<img src=\"data:image\\/.*\"\\/?>)*((<(u|i|strong|em|b|mark)>)*[^<^>]*(<\\/\\5>))*)*$"
@@ -102,12 +110,19 @@
           "minItems": 1,
           "items": {"$ref": "#/definitions/Passage"}
         },
-        "excerpt": {
+        "descriptionHtml": {
+          "type": "string",
+          "pattern": "^([^<^>]*(<img src=\"data:image\\/.*\"\\/?>)*((<(u|i|strong|em|b|mark)>)*[^<^>]*(<\\/\\5>))*)*$"
+        },
+        "questionHtml": {
           "type": "string",
           "pattern": "^([^<^>]*(<img src=\"data:image\\/.*\"\\/?>)*((<(u|i|strong|em|b|mark)>)*[^<^>]*(<\\/\\5>))*)*$"
         }
       },
-      "required": ["passages"],
+      "required": [
+        "passages",
+        "questionHtml"
+      ],
       "additionalProperties": false
     },
     "DisplayReference": {
@@ -121,25 +136,24 @@
     "Passage": {
       "description": "This is a text resource so large that it's displayed separately from the question instructions and answer input.  The instructions may reference a particular line in the passage, so each line is modeled separately, so that the view can ensure each line is labeled and distinguishable from all the other lines, on any form factor.",
       "properties": {
-        "lines": {
+        "linesHtml": {
           "type": "array",
           "minItems": 1,
-          "items": {"$ref": "#/definitions/PassageLine"}
+          "items": {
+            "type": "string",
+            "pattern": "^([^<^>]*(<img src=\"data:image\\/.*\"\\/?>)*((<(u|i|strong|em|b|mark)>)*[^<^>]*(<\\/\\5>))*)*$"
+          }
         },
-        "title": {"type": "string"}
-      },
-      "required": ["lines"],
-      "additionalProperties": false
-    },
-    "PassageLine": {
-      "description": "This supports limited html markup, so that you can underline and emphasize things, but the complete styling logic is not modeled here. All image data must be included in a data url, no http uris.",
-      "properties": {
-        "html": {
+        "titleHtml": {
+          "type": "string",
+          "pattern": "^([^<^>]*(<img src=\"data:image\\/.*\"\\/?>)*((<(u|i|strong|em|b|mark)>)*[^<^>]*(<\\/\\5>))*)*$"
+        },
+        "descriptionHtml": {
           "type": "string",
           "pattern": "^([^<^>]*(<img src=\"data:image\\/.*\"\\/?>)*((<(u|i|strong|em|b|mark)>)*[^<^>]*(<\\/\\5>))*)*$"
         }
       },
-      "required": ["html"],
+      "required": ["linesHtml", "titleHtml"],
       "additionalProperties": false
     },
     "MultipleChoiceAnswerKey": {
@@ -150,6 +164,23 @@
         }
       },
       "required": ["mcAnswer"],
+      "additionalProperties": false
+    },
+    "MultipleChoiceAnswerOption": {
+      "properties": {
+        "label": {
+          "type": "string",
+          "pattern": "^[A-Z]$"
+        },
+        "html": {
+          "type": "string",
+          "pattern": "^([^<^>]*(<img src=\"data:image\\/.*\"\\/?>)*((<(u|i|strong|em|b|mark)>)*[^<^>]*(<\\/\\5>))*)*$"
+        }
+      },
+      "required": [
+        "label",
+        "html"
+      ],
       "additionalProperties": false
     },
     "GridInAnswerKey": {
