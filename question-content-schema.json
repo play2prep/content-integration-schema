@@ -33,12 +33,10 @@
       }
     },
     "instructionsHtml": {
-      "type": "string",
-      "pattern": "^([^<^>]*(<img src=\"data:image\\/.*\"\\/?>)*((<(u|i|strong|em|b|mark)>)*[^<^>]*(<\\/\\5>))*)*$"
+      "$ref": "#/definitions/HtmlFragment"
     },
     "explanationHtml": {
-      "type": "string",
-      "pattern": "^([^<^>]*(<img src=\"data:image\\/.*\"\\/?>)*((<(u|i|strong|em|b|mark)>)*[^<^>]*(<\\/\\5>))*)*$"
+      "$ref": "#/definitions/HtmlFragment"
     },
     "meta": {"$ref": "#/definitions/QuestionClassifications"}
   },
@@ -93,8 +91,7 @@
           "type": "array",
           "minItems": 1,
           "items": {
-            "type": "string",
-            "pattern": "^([^<^>]*(<img src=\"data:image\\/.*\"\\/?>)*((<(u|i|strong|em|b|mark)>)*[^<^>]*(<\\/\\5>))*)*$"
+            "$ref": "#/definitions/HtmlFragment"
           },
           "uniqueItems": true
         }
@@ -111,12 +108,10 @@
           "items": {"$ref": "#/definitions/Passage"}
         },
         "descriptionHtml": {
-          "type": "string",
-          "pattern": "^([^<^>]*(<img src=\"data:image\\/.*\"\\/?>)*((<(u|i|strong|em|b|mark)>)*[^<^>]*(<\\/\\5>))*)*$"
+          "$ref": "#/definitions/HtmlFragment"
         },
         "questionHtml": {
-          "type": "string",
-          "pattern": "^([^<^>]*(<img src=\"data:image\\/.*\"\\/?>)*((<(u|i|strong|em|b|mark)>)*[^<^>]*(<\\/\\5>))*)*$"
+          "$ref": "#/definitions/HtmlFragment"
         }
       },
       "required": [
@@ -140,17 +135,14 @@
           "type": "array",
           "minItems": 1,
           "items": {
-            "type": "string",
-            "pattern": "^([^<^>]*(<img src=\"data:image\\/.*\"\\/?>)*((<(u|i|strong|em|b|mark)>)*[^<^>]*(<\\/\\5>))*)*$"
+            "$ref": "#/definitions/HtmlFragment"
           }
         },
         "titleHtml": {
-          "type": "string",
-          "pattern": "^([^<^>]*(<img src=\"data:image\\/.*\"\\/?>)*((<(u|i|strong|em|b|mark)>)*[^<^>]*(<\\/\\5>))*)*$"
+          "$ref": "#/definitions/HtmlFragment"
         },
         "descriptionHtml": {
-          "type": "string",
-          "pattern": "^([^<^>]*(<img src=\"data:image\\/.*\"\\/?>)*((<(u|i|strong|em|b|mark)>)*[^<^>]*(<\\/\\5>))*)*$"
+          "$ref": "#/definitions/HtmlFragment"
         }
       },
       "required": ["linesHtml", "titleHtml"],
@@ -173,8 +165,7 @@
           "pattern": "^[A-Z]$"
         },
         "html": {
-          "type": "string",
-          "pattern": "^([^<^>]*(<img src=\"data:image\\/.*\"\\/?>)*((<(u|i|strong|em|b|mark)>)*[^<^>]*(<\\/\\5>))*)*$"
+          "$ref": "#/definitions/HtmlFragment"
         }
       },
       "required": [
@@ -200,6 +191,10 @@
     "QuestionId": {
       "type": "string",
       "pattern": "^[a-zA-Z0-9\\-_\\.]+$"
+    },
+    "HtmlFragment": {
+      "type": "string",
+      "pattern": "^([^<^>]*(<img src=\"data:image\\/.*\"\\/?>)*((<(u|i|strong|em|b|mark)>)*[^<^>]*(<\\/\\5>))*)*$"
     }
   }
 }
