@@ -1,0 +1,53 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "schedule": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/QuestionPack"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [ "schedule" ],
+  "definitions": {
+    "QuestionPack": {
+      "description": "A sequence of questions that may be presented to the student as a daily training pack, practice test, daily countdown game, or question options in the two player Ask & Answer game.",
+      "type": "object",
+      "properties": {
+        "questions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/QuestionId"
+          }
+        },
+        "categories": {
+          "description": "Each pack may have its own category 'theme', that informs the icon play2prep uses to represent this pack, in the app.",
+          "$ref": "#/definitions/CategoryStack"
+        }
+      },
+      "required": [ "categories", "questions" ],
+      "additionalProperties": false
+    },
+    "QuestionId": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9\\-_\\.]+$"
+    },
+    "CategoryStack": {
+      "description": "This is interpreted as a hierarchical stack of category names. It informs the play2prep My Progress screen, where students can drill down into their achievement stats through levels of categories.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/CategoryName"
+      }
+    },
+    "CategoryName": {
+      "description": "This is a category display name students see in the play2prep app.  There's no 'id' symbology for categories, and all references to categories in the Content Publisher API are made with their full display names.",
+      "type": "string",
+      "pattern": "^\\w+(.*\\w+)*$"
+    }
+  }
+}
