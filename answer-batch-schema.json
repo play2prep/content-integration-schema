@@ -1,0 +1,104 @@
+{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "This represents a batch of answers. Play2prep sends an answer batch to the content publisher as soon as it has one available. Answer batches may be composed of a mix of answers from different question schedules, some questions in some schedules may never be answered.",
+  "type": "object",
+  "properties": {
+    "answers": {
+      "typeof": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/Answer"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [ "answers" ],
+  "definitions": {
+
+    "Answer": {
+      "type": "object",
+      "properties": {
+        "questionId": {
+          "$ref": "#/definitions/QuestionId"
+        },
+        "answer": {
+          "type": "object",
+          "oneOf": [
+            {"$ref": "#/definitions/MultipleChoiceAnswerValue"},
+            {"$ref": "#/definitions/SATGridInAnswerValue"},
+            {"$ref": "#/definitions/StudentProducedResponseAnswerValue"},
+            {"$ref": "#/definitions/SkippedAnswerValue"}
+          ]
+        },
+        "startTimeMs": {
+          "description": "The instant the player started answering the question, in milliseconds since the epoch Jan 1, 1970.",
+          "$ref": "#/definitions/Timestamp"
+        },
+        "submitTimeMs": {
+          "description": "The instant the player submitted the question, in milliseconds since the epoch Jan 1, 1970. All submit times will be the same, for a Practice Test, Daily Training Pack, or any other grouped learning format.",
+          "$ref": "#/definitions/Timestamp"
+        },
+        "answerDurationMs": {
+          "description": "The total time a player spent answering a question, in milliseconds. This counts the number of milliseconds a question was up on the screen, at answer time. This may be smaller than the gap between startTimeMs and submitTimeMs, because a player can switch in and out of a question in a grouped leaerning format like Daily Training or Practice Tests.",
+          "$ref": "#/definitions/Duration"
+        }
+      },
+      "required": [ "questionId", "answer", "startTimeMs", "submitTimeMs", "answerDurationMs"],
+      "additionalProperties": false
+    },
+
+    "Timestamp": {
+      "type": "integer",
+      "minimum": 1325376000000
+    },
+    "Duration": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "SkippedAnswerValue": {
+      "description": "Skipped questions were seen by the student, but they chose not to answer them. Abandoned questions were scheduled by the content publisher, but were discarded by the play2prep system, for example: one of two question options in every Ask & Answer round is discarded.",
+      "properties": {
+        "skipped": {
+          "enum": ["SKIPPED", "DISCARDED"]
+        }
+      },
+      "required": [ "skipped" ],
+      "additionalProperties": false
+    },
+    "MultipleChoiceAnswerValue": {
+      "properties": {
+        "mcAnswer": {
+          "type": "string",
+          "pattern": "^[A-Z]$"
+        }
+      },
+      "required": [ "mcAnswer" ],
+      "additionalProperties": false
+    },
+    "SATGridInAnswerValue": {
+      "description": "Limited form of student produced response, for some SAT math questions, corresponding to the SAT_GRIDIN answer format type. There may be more than one right answer to this kind of question.",
+      "properties": {
+        "gridInAnswer": {
+          "type": "string",
+          "pattern": "^[\\./0-9]{1,5}$"
+        }
+      },
+      "required": [ "gridInAnswer" ],
+      "additionalProperties": false
+    },
+    "StudentProducedResponseAnswerValue": {
+      "description": "Free form answer format corresponding to the SPR answer format type. There may be more than one right answer to this kind of question.",
+      "properties": {
+        "sprAnswer": {
+          "type": "string"
+        }
+      },
+      "required": [ "sprAnswer" ],
+      "additionalProperties": false
+    },
+    "QuestionId": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9\\-_\\.]+$"
+    }
+  }
+}
