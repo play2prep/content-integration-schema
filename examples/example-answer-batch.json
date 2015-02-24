@@ -1,0 +1,40 @@
+{
+  "answers": [
+    {
+      "questionId": "SAT.1309",
+      "startTimeMs": 1424809938000,
+      "submitTimeMs": 1424809963000,
+      "answerDurationMs": 25000,
+      "answer": {
+        "mcAnswer": "C"
+      }
+    },
+    {
+      "questionId": "SAT.1345",
+      "startTimeMs": 1424810137000,
+      "submitTimeMs": 1424810156000,
+      "answerDurationMs": 19000,
+      "answer": {
+        "sprAnswer": "isosceles triangles"
+      }
+    },
+    {
+      "questionId": "SAT.1321",
+      "startTimeMs": 1424810448000,
+      "submitTimeMs": 1424810510000,
+      "answerDurationMs": 62000,
+      "answer": {
+        "skipped": "SKIPPED"
+      }
+    },
+    {
+      "questionId": "SAT.1321",
+      "startTimeMs": 1424810448000,
+      "submitTimeMs": 1424810448000,
+      "answerDurationMs": 0,
+      "answer": {
+        "skipped": "DISCARDED"
+      }
+    }
+  ]
+}
