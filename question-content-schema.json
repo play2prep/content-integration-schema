@@ -15,23 +15,47 @@
       "type": "object",
       "oneOf": [
         {"$ref": "#/definitions/MultipleChoiceAnswerKey"},
-        {"$ref": "#/definitions/GridInAnswerKey"}
+        {"$ref": "#/definitions/SATGridInAnswerKey"},
+        {"$ref": "#/definitions/StudentProducedResponseAnswerKey"}
       ]
     },
     "answerFormat": {
       "enum": [
         "MC",
-        "GRID"
+        "SAT_GRID",
+        "SPR"
       ]
+    },
+    "mcOptions": {
+      "description": "List of multiple choice answer options. This is required for all questions with the MC answer format.",
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "$ref": "#/definitions/MultipleChoiceAnswerOption"
+      }
+    },
+    "instructionsHtml": {
+      "$ref": "#/definitions/HtmlFragment"
+    },
+    "mainQuestionHtml": {
+      "$ref": "#/definitions/HtmlFragment"
+    },
+    "explanationHtml": {
+      "$ref": "#/definitions/HtmlFragment"
+    },
+    "hintHtml": {
+      "$ref": "#/definitions/HtmlFragment"
     },
     "meta": {"$ref": "#/definitions/QuestionClassifications"}
   },
   "additionalProperties": false,
   "required": [
     "id",
-    "display",
     "answerKey",
     "answerFormat",
+    "explanationHtml",
+    "mainQuestionHtml",
+    "hintHtml",
     "meta"
   ],
   "definitions": {
@@ -61,11 +85,27 @@
           "items": {
             "$ref": "#/definitions/QuestionId"
           }
+        },
+        "time": {
+          "type": "object",
+          "properties": {
+            "answerTimeSec": {
+              "description": "Max recommended time to answer this question.",
+              "$ref": "#/definitions/TimeSeconds"
+            },
+            "deltaPct": {
+              "description": "Gamified mechanisms adding or removing time to the clock will use this % of answerTimeSec.",
+              "$ref": "#/definitions/Percent"
+            }
+          },
+          "required": ["answerTimeSec", "deltaPct"],
+          "additionalProperties": false
         }
       },
       "required": [
         "categories",
         "testType",
+        "time",
         "difficulty"
       ],
       "additionalProperties": false
@@ -76,8 +116,7 @@
           "type": "array",
           "minItems": 1,
           "items": {
-            "type": "string",
-            "pattern": "^([^<^>]*(<img src=\"data:image\\/.*\"\\/?>)*((<(u|i|strong|em|b|mark)>)*[^<^>]*(<\\/\\5>))*)*$"
+            "$ref": "#/definitions/HtmlFragment"
           },
           "uniqueItems": true
         }
@@ -93,12 +132,11 @@
           "minItems": 1,
           "items": {"$ref": "#/definitions/Passage"}
         },
-        "excerpt": {
-          "type": "string",
-          "pattern": "^([^<^>]*(<img src=\"data:image\\/.*\"\\/?>)*((<(u|i|strong|em|b|mark)>)*[^<^>]*(<\\/\\5>))*)*$"
+        "descriptionHtml": {
+          "$ref": "#/definitions/HtmlFragment"
         }
       },
-      "required": ["passages"],
+      "required": [ "passages" ],
       "additionalProperties": false
     },
     "DisplayReference": {
@@ -112,25 +150,21 @@
     "Passage": {
       "description": "This is a text resource so large that it's displayed separately from the question instructions and answer input.  The instructions may reference a particular line in the passage, so each line is modeled separately, so that the view can ensure each line is labeled and distinguishable from all the other lines, on any form factor.",
       "properties": {
-        "lines": {
+        "linesHtml": {
           "type": "array",
           "minItems": 1,
-          "items": {"$ref": "#/definitions/PassageLine"}
+          "items": {
+            "$ref": "#/definitions/HtmlFragment"
+          }
         },
-        "title": {"type": "string"}
-      },
-      "required": ["lines"],
-      "additionalProperties": false
-    },
-    "PassageLine": {
-      "description": "This supports limited html markup, so that you can underline and emphasize things, but the complete styling logic is not modeled here. All image data must be included in a data url, no http uris.",
-      "properties": {
-        "html": {
-          "type": "string",
-          "pattern": "^([^<^>]*(<img src=\"data:image\\/.*\"\\/?>)*((<(u|i|strong|em|b|mark)>)*[^<^>]*(<\\/\\5>))*)*$"
+        "titleHtml": {
+          "$ref": "#/definitions/HtmlFragment"
+        },
+        "descriptionHtml": {
+          "$ref": "#/definitions/HtmlFragment"
         }
       },
-      "required": ["html"],
+      "required": ["linesHtml", "titleHtml"],
       "additionalProperties": false
     },
     "MultipleChoiceAnswerKey": {
@@ -143,23 +177,71 @@
       "required": ["mcAnswer"],
       "additionalProperties": false
     },
-    "GridInAnswerKey": {
+    "MultipleChoiceAnswerOption": {
+      "properties": {
+        "label": {
+          "type": "string",
+          "pattern": "^[A-Z]$"
+        },
+        "html": {
+          "$ref": "#/definitions/HtmlFragment"
+        }
+      },
+      "required": [
+        "label",
+        "html"
+      ],
+      "additionalProperties": false
+    },
+    "SATGridInAnswerKey": {
+      "description": "Limited form of student produced response, for some SAT math questions, corresponding to the SAT_GRIDIN answer format type. There may be more than one right answer to this kind of question.",
+      "properties": {
+        "correctGridInAnswers": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^[\\./0-9]{1,5}$"
+          }
+        }
+      },
+      "required": ["correctAnswers"],
+      "additionalProperties": false
+    },
+    "StudentProducedResponseAnswerKey": {
+      "description": "Free form answer format corresponding to the SPR answer format type. There may be more than one right answer to this kind of question.",
       "properties": {
         "correctAnswers": {
           "type": "array",
           "minItems": 1,
           "items": {
-            "type": "string",
-            "pattern": "^[./0-9]{1,5}$"
+            "type": "string"
           }
         }
       },
-      "required": ["mcAnswer"],
+      "required": ["correctAnswers"],
       "additionalProperties": false
+    },
+    "TimeSeconds": {
+      "description": "This model represents timings related to the time it takes to answer a question, in seconds.",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 18000
+    },
+    "Percent": {
+      "description": "0-100%, with integer precision.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
     },
     "QuestionId": {
       "type": "string",
       "pattern": "^[a-zA-Z0-9\\-_\\.]+$"
+    },
+    "HtmlFragment": {
+      "description": "Supports limited markup for italics, bold, underlining, and highlighting. All images must have inline data content urls, so that each question content object is fully self contained.",
+      "type": "string",
+      "pattern": "^([^<^>]*(<img src=\"data:image\\/.*\"\\/?>)*((<(u|i|strong|em|b|mark)>)*[^<^>]*(<\\/\\5>))*)*$"
     }
   }
 }
