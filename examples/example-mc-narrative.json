@@ -33,8 +33,13 @@
   "meta": {
     "testType": "ACT",
     "categories": [
-      "English",
-      "Passage Based Reading"
+      [
+        "English",
+        "Literature"
+      ], [
+        "Reading",
+        "Passage Based Reading"
+      ]
     ],
     "difficulty": 3,
     "time": {
