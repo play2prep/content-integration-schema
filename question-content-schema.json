@@ -62,12 +62,8 @@
     "QuestionClassifications": {
       "properties": {
         "categories": {
-          "type": "array",
-          "minItems": 1,
-          "items": {
-            "type": "string",
-            "pattern": "^\\w+(.*\\w+)*$"
-          }
+          "description": "A question may belong to multiple category stacks.",
+          "$ref": "#/definitions/CategoryStacks"
         },
         "testType": {
           "type": "string",
@@ -221,6 +217,27 @@
       },
       "required": ["correctAnswers"],
       "additionalProperties": false
+    },
+    "CategoryStacks": {
+      "description": "A question may belong under multiple different category hierarchies.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/CategoryStack"
+      }
+    },
+    "CategoryStack": {
+      "description": "This is interpreted as a hierarchical stack of category names. It informs the play2prep My Progress screen, where students can drill down into their achievement stats through levels of categories. The first name in the array is the top level category, and each subsequent item is a level nested under the preceeding item.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/CategoryName"
+      }
+    },
+    "CategoryName": {
+      "description": "This is a category display name students see in the play2prep app.  There's no 'id' symbology for categories, and all references to categories in the Content Publisher API are made with their full display names.",
+      "type": "string",
+      "pattern": "^\\w+(.*\\w+)*$"
     },
     "TimeSeconds": {
       "description": "This model represents timings related to the time it takes to answer a question, in seconds.",
