@@ -258,7 +258,7 @@
     "HtmlFragment": {
       "description": "Supports limited markup for italics, bold, underlining, and highlighting. All images must have inline data content urls, so that each question content object is fully self contained.",
       "type": "string",
-      "pattern": "^([^<^>]*(<img src=\"data:image\\/.*\"\\/?>)*((<(u|i|strong|em|b|mark)>)*[^<^>]*(<\\/\\5>))*)*$"
+      "pattern": "^([^<>]*(<img src=\"data:image\\/.*\"\\/?>)?((<(u|i|strong|em|b|mark)>)*[^<>]*(<\\/\\5>))*(<math.*<\\/math>)?)*$"
     }
   }
 }
