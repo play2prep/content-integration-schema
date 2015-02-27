@@ -1,0 +1,232 @@
+#%RAML 0.8
+
+title: Content Publisher
+baseUri: http://api.content-publisher.com/play2prep/{version}
+version: v1
+
+documentation:
+  - title: Content Publisher API
+    content: |
+      Academic content publishers who want global distribution through the play2prep Android and iOS app can integrate with play2prep via the Hosted Content Publisher API.  Publishers can gain online and offline engagement in multiple languages, and integrate adaptive learning platforms with play2prep so that they can drive play2prep's Daily Training schedule, and all other learning formats, off of their personalized adaptive learning intelligence. To integrate content and adaptive learning, the Content Publisher hosts a content server implementing this API. The play2prep server calls to the hosted content server, to fetch new questions for students, and report their answers back to the publisher.
+
+schemas:
+  - Question: !include https://gist.githubusercontent.com/massaroni/9514fc1e84054406fafb/raw/78bff2444c2735d8051196c4b2c3f0d7233fe064/question-content-schema.json
+    # also see (http://play2prep.github.io/content-integration-schema/question-content-schema.json)
+  - Schedule: !include https://gist.githubusercontent.com/massaroni/7e6a6129d24992dbee5d/raw/4790559a7f6cf6a37e96cf1b550efca1c784b139/question-schedule-schema.json
+    # also see (http://play2prep.github.io/content-integration-schema/question-schedule-schema.json)
+  - AnswerBatch: !include https://gist.githubusercontent.com/massaroni/2cd64c4e0c6da435e0aa/raw/04839c5eee8046e53a9c76975644e8105dda0dbf/answer-batch-schema.json
+
+/questions:
+  displayName: Question Content
+  description: Publisher provides the full question content, including text, images, answer key, explanation, and metadata.  Play2prep caches question content forever, and will request the contents of any question it doesn't have in the cache.  This process provides enough freedom for the content publisher to add new questions and categories on the fly, without coordinating with play2prep.
+  /{questionId}:
+    get:
+      responses:
+        200:
+          body:
+            application/json:
+              schema: Question
+              example: |
+                {
+                  "id": "SAT_T09_S06_CR.Q07",
+                  "mcOptions": [
+                    {
+                      "label": "A",
+                      "html": "Kant&#8217;s forgetfulness"
+                    },
+                    {
+                      "label": "B",
+                      "html": "Kant&#8217;s commitment to healthful practices"
+                    },
+                    {
+                      "label": "C",
+                      "html": "the dogmatic nature of Rousseau&#8217;s writings"
+                    },
+                    {
+                      "label": "D",
+                      "html": "the effect of Rousseau&#8217;s philosophy on Kant"
+                    },
+                    {
+                      "label": "E",
+                      "html": "Kant&#8217;s close friendship with Rousseau"
+                    }
+                  ],
+                  "answerKey": {
+                    "mcAnswer": "D"
+                  },
+                  "explanationHtml": "The passage says that Kant <i>forgot to take his. . . daily walk</i> because he <i>was so absorbed in reading Rousseau&#8217;s &#201;mile</i> (lines 14&#8211;16).",
+                  "instructionsHtml": "<em>Read the passage and choose the best answer to the question.</em>",
+                  "mainQuestionHtml": "Passage 1 mentions Kant&#8217;s &#8220;daily walk&#8221; (line 16) in order to emphasize",
+                  "hintHtml": "What do the details emphasize?",
+                  "answerFormat": "MC",
+                  "meta": {
+                    "testType": "ACT",
+                    "categories": [
+                      "English",
+                      "Passage Based Reading"
+                    ],
+                    "difficulty": 3,
+                    "time": {
+                      "answerTimeSec": 180,
+                      "deltaPct": 25
+                    }
+                  },
+                  "display": {
+                    "descriptionHtml": "<i>The following is from a recent commentary on Jean&#8211;Jacques Rousseau (1712&#8211;1778), a French philosopher during the Enlightenment.</i>",
+                    "passages": [
+                      {
+                        "titleHtml": "Passage 1",
+                        "linesHtml": [
+                          "Taken as a whole, Rousseau&#8217;s writings attacked",
+                          "the Age of Reason, gave impetus to the",
+                          "Romantic movement by emphasizing feeling",
+                          "(leading Goethe to say that &#8220;feeling is all&#8221;),",
+                          "revived religion even though he had doubts",
+                          "about some traditional teachings, provided a",
+                          "new direction for education (his book <i>&#201;mile</i>",
+                          "since Plato&#8217;s <i>Republic</i>), inspired the",
+                          "French Revolution, made a unique impact on",
+                          "political philosophy, and, more than the writing",
+                          "of any of his contemporaries, influenced",
+                          "several subsequent philosophers, especially",
+                          "Immanuel Kant. On one occasion, Kant was",
+                          "so absorbed in reading Rousseau&#8217;s <i>&#201;mile</i> that",
+                          "he forgot to take his celebrated daily walk",
+                          "While Kant admitted that it was David Hume",
+                          "who awakened him from his dogmatic slumbers",
+                          "regarding the theory of knowledge, it was",
+                          "Rousseau who showed him the way to a new",
+                          "theory of morality. So impressed was Kant by",
+                          "the insights of Rousseau that he hung a picture",
+                          "of him on the wall of his study, convinced that",
+                          "Rousseau was the Newton of the moral world"
+                        ]
+                      }, {
+                        "titleHtml": "Passage 2",
+                        "linesHtml": [
+                          "The roses we lay at Rousseau&#8217;s feet for this theory",
+                          "of Natural Rights tend to overwhelm the",
+                          "less fragrant of his ideas. He persisted in believing",
+                          "in the nobility of the primitive state of",
+                          "nature, and that women&#8217;s nature was to serve",
+                          "men. His assertions about Natural Rights of",
+                          "Man laid the philosophical foundation of",
+                          "American independence, but his worship of",
+                          "emotion over reason and of &#8220;negative education&#8221;",
+                          "gave generations of parents permission to",
+                          "ignore the need to discipline and teach their",
+                          "children."
+                        ]
+                      }
+                    ]
+                  }
+                }
+
+/schedules:
+  displayName: Question Schedules
+  description: The Content Publisher builds personalized schedules for each student, in order to provide variety, and target areas that students need to work on.  The logic that goes into building the schedule is up to the content publisher.  It could be as simple as a random sequence of questions, it could provide an even variety of question across a diverse spread of categories, or it could employ adaptive learning intelligence to conduct assessments and deploy a personalized training schedule.  Play2prep needs to fetch a lengthy schedule up front, for offline training, and it will refetch the schedule whenever it submits answers, so that the adaptive learning platform can steer the student as soon as it collects any new information about them.
+
+    A Question Schedule is a sequence of Question Packs.  Each pack is a sequence of questions that may be presented to the student as a Daily Training Pack, Practice Test, Daily Countdown Game, or as question options in the two player Ask & Answer game. Play2prep may fetch many schedules before it submits any answers for that student, so the Publisher may want to keep track of the questions it's already issued in recent schedules.
+  
+  /{studentId}:
+    get:
+      queryParameters:
+        packs:
+          displayName: Pack Count
+          description: The number of packs to return in the schedule.  The nature of the packs could be randomized, or they could come from some adaptive learning intelligence.
+          type: integer
+          required: true
+        packSize:
+          displayName: Pack Size
+          description: The size of each pack in the schedule.
+          type: integer
+          required: false
+        test:
+          displayName: Test Type Filter
+          description: Test type code, like "SAT", "ACT", "SAT2_BIO", "SAT2_PHYS", etc. The play2prep server should never request a test type the publisher doesn't provide.
+          type: string
+          required: true
+        difficulty:
+          displayName: Difficulty Filter
+          description: Comma separated list of difficulty ids, denoting a whitelist/blacklist of difficulty levels. Ids starting with a ! denoted a blacklisted level. For example, to include 1 and 2 and exclude 3, 4, and 5 - "difficulty=1,2,!3,!4,!5", For example, to include all difficulty levels except 5 - "difficulty=!5"
+        categories:
+          displayName: Category Filter
+          description: Comma separated list of category names denoting a whitelist/blacklist of categories. Names starting with a ! denote a blacklisted name. For example, to include only Math and Physics - "categories=Math,Physics".  For example, for a hierarchical symbology like category names, it may be necessary to mix whitelist and blacklist items.  For example, to include Math but exclude sub category Geometry - "categories=Math,!Geometry".  Or, to include all categories except Animal Biology - "categories=!Animal%20Biology".
+          type: string
+          required: false
+        answerFormats:
+          displayName: Answer Format Filter
+          description: Comma separated list of answer format codes, denoting a whitelist/blacklist of answer formats. While the publisher may have questions for a variety of interactive formats, play2prep may not support all of them yet, so the play2prep server needs to list out all the formats it supports.  For example, to get only multiple choice and student produced response formats - "answerFormats=MC,SPR".  All the currently supported formats are - MC (Multiple Choice), SPR (Student Produced Response), and GRIDIN (SAT Math Grid-In).
+          type: string
+          required: false
+      responses:
+        200:
+          body:
+            application/json:
+              schema: Schedule
+              example: |
+                {
+                  "schedule": [
+                    {
+                      "categories": [ "Math", "Geometry" ],
+                      "questions": [ "Q150", "Q188", "Q202", "Q99"]
+                    },
+                    {
+                      "categories": [ "Biology", "Plants", "Spikey Plants", "Cacti" ],
+                      "questions": [ "Q747", "Q707", "Q711", "Q777" ]
+                    }
+                  ]
+                }
+
+/answers:
+  displayName: Answers
+  description: Play2prep sends all answers to the content publisher, so that they can track students progress and do their own bookkeeping. Play2prep used its cached copy of the answer key to grade and score the questions already, so it doesn't need any response from the publisher about correctness or scoring.
+  /{studentId}:
+    put:
+      body:
+        application/json:
+          schema: AnswerBatch
+          example: |
+            {
+              "answers": [
+                {
+                  "questionId": "SAT.1309",
+                  "startTimeMs": 1424809938000,
+                  "submitTimeMs": 1424809963000,
+                  "answerDurationMs": 25000,
+                  "answer": {
+                    "mcAnswer": "C"
+                  }
+                },
+                {
+                  "questionId": "SAT.1345",
+                  "startTimeMs": 1424810137000,
+                  "submitTimeMs": 1424810156000,
+                  "answerDurationMs": 19000,
+                  "answer": {
+                    "sprAnswer": "isosceles triangles"
+                  }
+                },
+                {
+                  "questionId": "SAT.1321",
+                  "startTimeMs": 1424810448000,
+                  "submitTimeMs": 1424810510000,
+                  "answerDurationMs": 62000,
+                  "answer": {
+                    "skipped": "SKIPPED"
+                  }
+                },
+                {
+                  "questionId": "SAT.1321",
+                  "startTimeMs": 1424810448000,
+                  "submitTimeMs": 1424810448000,
+                  "answerDurationMs": 0,
+                  "answer": {
+                    "skipped": "DISCARDED"
+                  }
+                }
+              ]
+            }
+    
+    
+    

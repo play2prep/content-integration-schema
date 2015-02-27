@@ -1,0 +1,680 @@
+<!DOCTYPE HTML><html><head><title>Content Publisher API documentation</title><meta http-equiv="X-UA-Compatible" content="IE=edge"><meta http-equiv="Content-Type" content="text/html; charset=utf-8"><meta name="generator" content="https://github.com/kevinrenskers/raml2html 1.4.0"><link rel="stylesheet" href="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css"><link rel="stylesheet" href="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/styles/default.min.css"><script type="text/javascript" src="http://code.jquery.com/jquery-1.11.0.min.js"></script><script type="text/javascript" src="http://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script><script type="text/javascript" src="http://cdnjs.cloudflare.com/ajax/libs/highlight.js/8.1/highlight.min.js"></script><script type="text/javascript">
+        $(document).ready(function() {
+            $('.page-header pre code, .top-resource-description pre code').each(function(i, block) {
+                hljs.highlightBlock(block);
+            });
+
+            $('[data-toggle]').click(function() {
+                var selector = $(this).data('target') + ' pre code';
+                $(selector).each(function(i, block) {
+                    hljs.highlightBlock(block);
+                });
+            });
+        });
+    </script><style>
+        .hljs {
+            background: transparent;
+        }
+        .parent {
+            color: #999;
+        }
+        .list-group-item > .badge {
+            float: none;
+            margin-right: 6px;
+        }
+        .panel-title > .methods {
+            float: right;
+        }
+        .badge {
+            border-radius: 0;
+            text-transform: uppercase;
+            width: 70px;
+            font-weight: normal;
+            color: #f3f3f6;
+            line-height: normal;
+        }
+        .badge_get {
+            background-color: #63a8e2;
+        }
+        .badge_post {
+            background-color: #6cbd7d;
+        }
+        .badge_put {
+            background-color: #22bac4;
+        }
+        .badge_delete {
+            background-color: #d26460;
+        }
+        .list-group, .panel-group {
+            margin-bottom: 0;
+        }
+        .panel-group .panel+.panel-white {
+            margin-top: 0;
+        }
+        .panel-group .panel-white {
+            border-bottom: 1px solid #F5F5F5;
+            border-radius: 0;
+        }
+        .panel-white:last-child {
+            border-bottom-color: white;
+            -webkit-box-shadow: none;
+            box-shadow: none;
+        }
+        .panel-white .panel-heading {
+            background: white;
+        }
+        .tab-pane ul {
+            padding-left: 2em;
+        }
+        .tab-pane h2 {
+            font-size: 1.2em;
+            padding-bottom: 4px;
+            border-bottom: 1px solid #ddd;
+        }
+        .tab-pane h3 {
+            font-size: 1.1em;
+        }
+        .tab-content {
+            border-left: 1px solid #ddd;
+            border-right: 1px solid #ddd;
+            border-bottom: 1px solid #ddd;
+            padding: 10px;
+        }
+        #sidebar {
+            margin-top: 30px;
+        }
+        .top-resource-description {
+            border-bottom: 1px solid #ddd;
+            background: #fcfcfc;
+            padding: 15px 15px 0 15px;
+            margin: -15px -15px 10px -15px;
+        }
+        .resource-description {
+            border-bottom: 1px solid #fcfcfc;
+            background: #fcfcfc;
+            padding: 15px 15px 0 15px;
+            margin: -15px -15px 10px -15px;
+        }
+        .resource-description p:last-child {
+            margin: 0;
+        }
+        .list-group .badge {
+            float: left;
+        }
+        .method_description {
+            margin-left: 85px;
+        }
+        .method_description p:last-child {
+            margin: 0;
+        }
+        .list-group-item {
+            cursor: pointer;
+        }
+        .list-group-item:hover {
+            background-color: #f5f5f5;
+        }
+    </style></head><body data-spy="scroll" data-target="#sidebar"><div class="container"><div class="row"><div class="col-md-9" role="main"><div class="page-header"><h1>Content Publisher API documentation <small>version v1</small></h1><p>http://api.content-publisher.com/play2prep/v1</p><h3 id="Content-Publisher-API"><a href="#Content-Publisher-API">Content Publisher API</a></h3><p>Academic content publishers who want global distribution through the play2prep Android and iOS app can integrate with play2prep via the Hosted Content Publisher API. Publishers can gain online and offline engagement in multiple languages, and integrate adaptive learning platforms with play2prep so that they can drive play2prep&#39;s Daily Training schedule, and all other learning formats, off of their personalized adaptive learning intelligence. To integrate content and adaptive learning, the Content Publisher hosts a content server implementing this API. The play2prep server calls to the hosted content server, to fetch new questions for students, and report their answers back to the publisher.</p></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_questions" class="panel-title">Question Content</h3></div><div class="panel-body"><div class="top-resource-description"><p>Publisher provides the full question content, including text, images, answer key, explanation, and metadata. Play2prep caches question content forever, and will request the contents of any question it doesn&#39;t have in the cache. This process provides enough freedom for the content publisher to add new questions and categories on the fly, without coordinating with play2prep.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__questions__questionId_"><span class="parent">/questions</span>/{questionId}</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_questions__questionId__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__questions__questionId_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_questions__questionId__get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_questions__questionId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/questions</span>/{questionId}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#_questions__questionId__get_request" data-toggle="tab">Request</a></li><li><a href="#_questions__questionId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_questions__questionId__get_request"><h3>URI Parameters</h3><ul><li><strong>questionId</strong>: <em>required (string)</em></li></ul></div><div class="tab-pane" id="_questions__questionId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "The question content object has html display content to show the student, an answer key for offline grading, and metadata about the question. Html support is limited to &lt;i&gt;,&lt;u&gt;,&lt;strong&gt;,&lt;em&gt;,&lt;b&gt;, and &lt;mark&gt;. Question Content objects are fully self-contained, so all images must have inline data urls.",
+  "type": "object",
+  "properties": {
+    "id": {"$ref": "#/definitions/QuestionId"},
+    "display": {
+      "type": "object",
+      "oneOf": [
+        {"$ref": "#/definitions/PlainParagraphs"},
+        {"$ref": "#/definitions/Narrative"}
+      ]
+    },
+    "answerKey": {
+      "type": "object",
+      "oneOf": [
+        {"$ref": "#/definitions/MultipleChoiceAnswerKey"},
+        {"$ref": "#/definitions/SATGridInAnswerKey"},
+        {"$ref": "#/definitions/StudentProducedResponseAnswerKey"}
+      ]
+    },
+    "answerFormat": {
+      "enum": [
+        "MC",
+        "SAT_GRID",
+        "SPR"
+      ]
+    },
+    "mcOptions": {
+      "description": "List of multiple choice answer options. This is required for all questions with the MC answer format.",
+      "type": "array",
+      "minItems": 2,
+      "items": {
+        "$ref": "#/definitions/MultipleChoiceAnswerOption"
+      }
+    },
+    "instructionsHtml": {
+      "$ref": "#/definitions/HtmlFragment"
+    },
+    "mainQuestionHtml": {
+      "$ref": "#/definitions/HtmlFragment"
+    },
+    "explanationHtml": {
+      "$ref": "#/definitions/HtmlFragment"
+    },
+    "hintHtml": {
+      "$ref": "#/definitions/HtmlFragment"
+    },
+    "meta": {"$ref": "#/definitions/QuestionClassifications"}
+  },
+  "additionalProperties": false,
+  "required": [
+    "id",
+    "answerKey",
+    "answerFormat",
+    "explanationHtml",
+    "mainQuestionHtml",
+    "hintHtml",
+    "meta"
+  ],
+  "definitions": {
+    "QuestionClassifications": {
+      "properties": {
+        "categories": {
+          "description": "A question may belong to multiple category stacks.",
+          "$ref": "#/definitions/CategoryStacks"
+        },
+        "testType": {
+          "type": "string",
+          "pattern": "^\\w+$"
+        },
+        "difficulty": {
+          "type": "integer",
+          "minimum": 1,
+          "maximum": 5
+        },
+        "group": {
+          "description": "List of all questions in the same group as this question. It may or may not include this question&#x27;s id.",
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/QuestionId"
+          }
+        },
+        "time": {
+          "type": "object",
+          "properties": {
+            "answerTimeSec": {
+              "description": "Max recommended time to answer this question.",
+              "$ref": "#/definitions/TimeSeconds"
+            },
+            "deltaPct": {
+              "description": "Gamified mechanisms adding or removing time to the clock will use this % of answerTimeSec.",
+              "$ref": "#/definitions/Percent"
+            }
+          },
+          "required": ["answerTimeSec", "deltaPct"],
+          "additionalProperties": false
+        }
+      },
+      "required": [
+        "categories",
+        "testType",
+        "time",
+        "difficulty"
+      ],
+      "additionalProperties": false
+    },
+    "PlainParagraphs": {
+      "properties": {
+        "htmlParagraphs": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/HtmlFragment"
+          },
+          "uniqueItems": true
+        }
+      },
+      "additionalProperties": false,
+      "required": ["htmlParagraphs"]
+    },
+    "Narrative": {
+      "description": "This is a sequence of passages, and it&#x27;s so large that it&#x27;s displayed separately from the question instructions and answer input.",
+      "properties": {
+        "passages": {
+          "type": "array",
+          "minItems": 1,
+          "items": {"$ref": "#/definitions/Passage"}
+        },
+        "descriptionHtml": {
+          "$ref": "#/definitions/HtmlFragment"
+        }
+      },
+      "required": [ "passages" ],
+      "additionalProperties": false
+    },
+    "DisplayReference": {
+      "description": "Use the question display from another question. You can use this to canonicalize the Narrative or Passage for a group of questions.",
+      "properties": {
+        "refQuestionId": {"$ref": "#/definitions/QuestionId"}
+      },
+      "required": ["refQuestionId"],
+      "additionalProperties": false
+    },
+    "Passage": {
+      "description": "This is a text resource so large that it&#x27;s displayed separately from the question instructions and answer input.  The instructions may reference a particular line in the passage, so each line is modeled separately, so that the view can ensure each line is labeled and distinguishable from all the other lines, on any form factor.",
+      "properties": {
+        "linesHtml": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/HtmlFragment"
+          }
+        },
+        "titleHtml": {
+          "$ref": "#/definitions/HtmlFragment"
+        },
+        "descriptionHtml": {
+          "$ref": "#/definitions/HtmlFragment"
+        }
+      },
+      "required": ["linesHtml", "titleHtml"],
+      "additionalProperties": false
+    },
+    "MultipleChoiceAnswerKey": {
+      "properties": {
+        "mcAnswer": {
+          "type": "string",
+          "pattern": "^[A-Z]$"
+        }
+      },
+      "required": ["mcAnswer"],
+      "additionalProperties": false
+    },
+    "MultipleChoiceAnswerOption": {
+      "properties": {
+        "label": {
+          "type": "string",
+          "pattern": "^[A-Z]$"
+        },
+        "html": {
+          "$ref": "#/definitions/HtmlFragment"
+        }
+      },
+      "required": [
+        "label",
+        "html"
+      ],
+      "additionalProperties": false
+    },
+    "SATGridInAnswerKey": {
+      "description": "Limited form of student produced response, for some SAT math questions, corresponding to the SAT_GRIDIN answer format type. There may be more than one right answer to this kind of question.",
+      "properties": {
+        "correctGridInAnswers": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string",
+            "pattern": "^[\\./0-9]{1,5}$"
+          }
+        }
+      },
+      "required": ["correctAnswers"],
+      "additionalProperties": false
+    },
+    "StudentProducedResponseAnswerKey": {
+      "description": "Free form answer format corresponding to the SPR answer format type. There may be more than one right answer to this kind of question.",
+      "properties": {
+        "correctAnswers": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "type": "string"
+          }
+        }
+      },
+      "required": ["correctAnswers"],
+      "additionalProperties": false
+    },
+    "CategoryStacks": {
+      "description": "A question may belong under multiple different category hierarchies.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/CategoryStack"
+      }
+    },
+    "CategoryStack": {
+      "description": "This is interpreted as a hierarchical stack of category names. It informs the play2prep My Progress screen, where students can drill down into their achievement stats through levels of categories. The first name in the array is the top level category, and each subsequent item is a level nested under the preceeding item.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/CategoryName"
+      }
+    },
+    "CategoryName": {
+      "description": "This is a category display name students see in the play2prep app.  There&#x27;s no &#x27;id&#x27; symbology for categories, and all references to categories in the Content Publisher API are made with their full display names.",
+      "type": "string",
+      "pattern": "^\\w+(.*\\w+)*$"
+    },
+    "TimeSeconds": {
+      "description": "This model represents timings related to the time it takes to answer a question, in seconds.",
+      "type": "integer",
+      "minimum": 1,
+      "maximum": 18000
+    },
+    "Percent": {
+      "description": "0-100%, with integer precision.",
+      "type": "integer",
+      "minimum": 0,
+      "maximum": 100
+    },
+    "QuestionId": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9\\-_\\.]+$"
+    },
+    "HtmlFragment": {
+      "description": "Supports limited markup for italics, bold, underlining, and highlighting. All images must have inline data content urls, so that each question content object is fully self contained.",
+      "type": "string",
+      "pattern": "^([^&lt;&gt;]*(&lt;img src=\"data:image\\/.*\"\\/?&gt;)?((&lt;(u|i|strong|em|b|mark)&gt;)*[^&lt;&gt;]*(&lt;\\/\\5&gt;))*(&lt;math.*&lt;\\/math&gt;)?)*$"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "id": "SAT_T09_S06_CR.Q07",
+  "mcOptions": [
+    {
+      "label": "A",
+      "html": "Kant&amp;#8217;s forgetfulness"
+    },
+    {
+      "label": "B",
+      "html": "Kant&amp;#8217;s commitment to healthful practices"
+    },
+    {
+      "label": "C",
+      "html": "the dogmatic nature of Rousseau&amp;#8217;s writings"
+    },
+    {
+      "label": "D",
+      "html": "the effect of Rousseau&amp;#8217;s philosophy on Kant"
+    },
+    {
+      "label": "E",
+      "html": "Kant&amp;#8217;s close friendship with Rousseau"
+    }
+  ],
+  "answerKey": {
+    "mcAnswer": "D"
+  },
+  "explanationHtml": "The passage says that Kant &lt;i&gt;forgot to take his. . . daily walk&lt;/i&gt; because he &lt;i&gt;was so absorbed in reading Rousseau&amp;#8217;s &amp;#201;mile&lt;/i&gt; (lines 14&amp;#8211;16).",
+  "instructionsHtml": "&lt;em&gt;Read the passage and choose the best answer to the question.&lt;/em&gt;",
+  "mainQuestionHtml": "Passage 1 mentions Kant&amp;#8217;s &amp;#8220;daily walk&amp;#8221; (line 16) in order to emphasize",
+  "hintHtml": "What do the details emphasize?",
+  "answerFormat": "MC",
+  "meta": {
+    "testType": "ACT",
+    "categories": [
+      "English",
+      "Passage Based Reading"
+    ],
+    "difficulty": 3,
+    "time": {
+      "answerTimeSec": 180,
+      "deltaPct": 25
+    }
+  },
+  "display": {
+    "descriptionHtml": "&lt;i&gt;The following is from a recent commentary on Jean&amp;#8211;Jacques Rousseau (1712&amp;#8211;1778), a French philosopher during the Enlightenment.&lt;/i&gt;",
+    "passages": [
+      {
+        "titleHtml": "Passage 1",
+        "linesHtml": [
+          "Taken as a whole, Rousseau&amp;#8217;s writings attacked",
+          "the Age of Reason, gave impetus to the",
+          "Romantic movement by emphasizing feeling",
+          "(leading Goethe to say that &amp;#8220;feeling is all&amp;#8221;),",
+          "revived religion even though he had doubts",
+          "about some traditional teachings, provided a",
+          "new direction for education (his book &lt;i&gt;&amp;#201;mile&lt;/i&gt;",
+          "since Plato&amp;#8217;s &lt;i&gt;Republic&lt;/i&gt;), inspired the",
+          "French Revolution, made a unique impact on",
+          "political philosophy, and, more than the writing",
+          "of any of his contemporaries, influenced",
+          "several subsequent philosophers, especially",
+          "Immanuel Kant. On one occasion, Kant was",
+          "so absorbed in reading Rousseau&amp;#8217;s &lt;i&gt;&amp;#201;mile&lt;/i&gt; that",
+          "he forgot to take his celebrated daily walk",
+          "While Kant admitted that it was David Hume",
+          "who awakened him from his dogmatic slumbers",
+          "regarding the theory of knowledge, it was",
+          "Rousseau who showed him the way to a new",
+          "theory of morality. So impressed was Kant by",
+          "the insights of Rousseau that he hung a picture",
+          "of him on the wall of his study, convinced that",
+          "Rousseau was the Newton of the moral world"
+        ]
+      }, {
+        "titleHtml": "Passage 2",
+        "linesHtml": [
+          "The roses we lay at Rousseau&amp;#8217;s feet for this theory",
+          "of Natural Rights tend to overwhelm the",
+          "less fragrant of his ideas. He persisted in believing",
+          "in the nobility of the primitive state of",
+          "nature, and that women&amp;#8217;s nature was to serve",
+          "men. His assertions about Natural Rights of",
+          "Man laid the philosophical foundation of",
+          "American independence, but his worship of",
+          "emotion over reason and of &amp;#8220;negative education&amp;#8221;",
+          "gave generations of parents permission to",
+          "ignore the need to discipline and teach their",
+          "children."
+        ]
+      }
+    ]
+  }
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_schedules" class="panel-title">Question Schedules</h3></div><div class="panel-body"><div class="top-resource-description"><p>The Content Publisher builds personalized schedules for each student, in order to provide variety, and target areas that students need to work on. The logic that goes into building the schedule is up to the content publisher. It could be as simple as a random sequence of questions, it could provide an even variety of question across a diverse spread of categories, or it could employ adaptive learning intelligence to conduct assessments and deploy a personalized training schedule. Play2prep needs to fetch a lengthy schedule up front, for offline training, and it will refetch the schedule whenever it submits answers, so that the adaptive learning platform can steer the student as soon as it collects any new information about them. A Question Schedule is a sequence of Question Packs. Each pack is a sequence of questions that may be presented to the student as a Daily Training Pack, Practice Test, Daily Countdown Game, or as question options in the two player Ask &amp; Answer game. Play2prep may fetch many schedules before it submits any answers for that student, so the Publisher may want to keep track of the questions it&#39;s already issued in recent schedules.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__schedules__studentId_"><span class="parent">/schedules</span>/{studentId}</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_schedules__studentId__get"><span class="badge badge_get">get</span></a></span></h4></div><div id="panel__schedules__studentId_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_schedules__studentId__get" class="list-group-item"><span class="badge badge_get">get</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_schedules__studentId__get"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_get">get</span> <span class="parent">/schedules</span>/{studentId}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#_schedules__studentId__get_request" data-toggle="tab">Request</a></li><li><a href="#_schedules__studentId__get_response" data-toggle="tab">Response</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_schedules__studentId__get_request"><h3>URI Parameters</h3><ul><li><strong>studentId</strong>: <em>required (string)</em></li></ul><h3>Query Parameters</h3><ul><li><strong>Pack Count</strong>: <em>required (integer)</em><p>The number of packs to return in the schedule. The nature of the packs could be randomized, or they could come from some adaptive learning intelligence.</p></li><li><strong>Pack Size</strong>: <em>(integer)</em><p>The size of each pack in the schedule.</p></li><li><strong>Test Type Filter</strong>: <em>required (string)</em><p>Test type code, like "SAT", "ACT", "SAT2_BIO", "SAT2_PHYS", etc. The play2prep server should never request a test type the publisher doesn&#39;t provide.</p></li><li><strong>Difficulty Filter</strong>: <em>(string)</em><p>Comma separated list of difficulty ids, denoting a whitelist/blacklist of difficulty levels. Ids starting with a ! denoted a blacklisted level. For example, to include 1 and 2 and exclude 3, 4, and 5 - "difficulty=1,2,!3,!4,!5", For example, to include all difficulty levels except 5 - "difficulty=!5"</p></li><li><strong>Category Filter</strong>: <em>(string)</em><p>Comma separated list of category names denoting a whitelist/blacklist of categories. Names starting with a ! denote a blacklisted name. For example, to include only Math and Physics - "categories=Math,Physics". For example, for a hierarchical symbology like category names, it may be necessary to mix whitelist and blacklist items. For example, to include Math but exclude sub category Geometry - "categories=Math,!Geometry". Or, to include all categories except Animal Biology - "categories=!Animal%20Biology".</p></li><li><strong>Answer Format Filter</strong>: <em>(string)</em><p>Comma separated list of answer format codes, denoting a whitelist/blacklist of answer formats. While the publisher may have questions for a variety of interactive formats, play2prep may not support all of them yet, so the play2prep server needs to list out all the formats it supports. For example, to get only multiple choice and student produced response formats - "answerFormats=MC,SPR". All the currently supported formats are - MC (Multiple Choice), SPR (Student Produced Response), and GRIDIN (SAT Math Grid-In).</p></li></ul></div><div class="tab-pane" id="_schedules__studentId__get_response"><h2>HTTP status code <a href="http://httpstatus.es/200" target="_blank">200</a></h2><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "type": "object",
+  "properties": {
+    "schedule": {
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/QuestionPack"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [ "schedule" ],
+  "definitions": {
+    "QuestionPack": {
+      "description": "A sequence of questions that may be presented to the student as a daily training pack, practice test, daily countdown game, or question options in the two player Ask &amp; Answer game.",
+      "type": "object",
+      "properties": {
+        "questions": {
+          "type": "array",
+          "minItems": 1,
+          "items": {
+            "$ref": "#/definitions/QuestionId"
+          }
+        },
+        "categories": {
+          "description": "Each pack may have its own category &#x27;theme&#x27;, that informs the icon play2prep uses to represent this pack, in the app.",
+          "$ref": "#/definitions/CategoryStack"
+        }
+      },
+      "required": [ "categories", "questions" ],
+      "additionalProperties": false
+    },
+    "QuestionId": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9\\-_\\.]+$"
+    },
+    "CategoryStack": {
+      "description": "This is interpreted as a hierarchical stack of category names. It informs the play2prep My Progress screen, where students can drill down into their achievement stats through levels of categories.",
+      "type": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/CategoryName"
+      }
+    },
+    "CategoryName": {
+      "description": "This is a category display name students see in the play2prep app.  There&#x27;s no &#x27;id&#x27; symbology for categories, and all references to categories in the Content Publisher API are made with their full display names.",
+      "type": "string",
+      "pattern": "^\\w+(.*\\w+)*$"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "schedule": [
+    {
+      "categories": [ "Math", "Geometry" ],
+      "questions": [ "Q150", "Q188", "Q202", "Q99"]
+    },
+    {
+      "categories": [ "Biology", "Plants", "Spikey Plants", "Cacti" ],
+      "questions": [ "Q747", "Q707", "Q711", "Q777" ]
+    }
+  ]
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div><div class="panel panel-default"><div class="panel-heading"><h3 id="_answers" class="panel-title">Answers</h3></div><div class="panel-body"><div class="top-resource-description"><p>Play2prep sends all answers to the content publisher, so that they can track students progress and do their own bookkeeping. Play2prep used its cached copy of the answer key to grade and score the questions already, so it doesn&#39;t need any response from the publisher about correctness or scoring.</p></div><div class="panel-group"><div class="panel panel-white"><div class="panel-heading"><h4 class="panel-title"><a class="collapsed" data-toggle="collapse" href="#panel__answers__studentId_"><span class="parent">/answers</span>/{studentId}</a> <span class="methods"><a href="#" data-toggle="modal" data-target="#_answers__studentId__put"><span class="badge badge_put">put</span></a></span></h4></div><div id="panel__answers__studentId_" class="panel-collapse collapse"><div class="panel-body"><div class="list-group"><div data-toggle="modal" data-target="#_answers__studentId__put" class="list-group-item"><span class="badge badge_put">put</span><div class="method_description"></div><div class="clearfix"></div></div></div></div></div><div class="modal fade" tabindex="0" id="_answers__studentId__put"><div class="modal-dialog"><div class="modal-content"><div class="modal-header"><button type="button" class="close" data-dismiss="modal" aria-hidden="true">&times;</button><h4 class="modal-title" id="myModalLabel"><span class="badge badge_put">put</span> <span class="parent">/answers</span>/{studentId}</h4></div><div class="modal-body"><ul class="nav nav-tabs"><li class="active"><a href="#_answers__studentId__put_request" data-toggle="tab">Request</a></li></ul><div class="tab-content"><div class="tab-pane active" id="_answers__studentId__put_request"><h3>URI Parameters</h3><ul><li><strong>studentId</strong>: <em>required (string)</em></li></ul><h3>Body</h3><p><strong>Type: application/json</strong></p><p><strong>Schema</strong>:</p><pre><code>{
+  "$schema": "http://json-schema.org/draft-04/schema#",
+  "description": "This represents a batch of answers. Play2prep sends an answer batch to the content publisher as soon as it has one available. Answer batches may be composed of a mix of answers from different question schedules, some questions in some schedules may never be answered.",
+  "type": "object",
+  "properties": {
+    "answers": {
+      "typeof": "array",
+      "minItems": 1,
+      "items": {
+        "$ref": "#/definitions/Answer"
+      }
+    }
+  },
+  "additionalProperties": false,
+  "required": [ "answers" ],
+  "definitions": {
+
+    "Answer": {
+      "type": "object",
+      "properties": {
+        "questionId": {
+          "$ref": "#/definitions/QuestionId"
+        },
+        "answer": {
+          "type": "object",
+          "oneOf": [
+            {"$ref": "#/definitions/MultipleChoiceAnswerValue"},
+            {"$ref": "#/definitions/SATGridInAnswerValue"},
+            {"$ref": "#/definitions/StudentProducedResponseAnswerValue"},
+            {"$ref": "#/definitions/SkippedAnswerValue"}
+          ]
+        },
+        "startTimeMs": {
+          "description": "The instant the player started answering the question, in milliseconds since the epoch Jan 1, 1970.",
+          "$ref": "#/definitions/Timestamp"
+        },
+        "submitTimeMs": {
+          "description": "The instant the player submitted the question, in milliseconds since the epoch Jan 1, 1970. All submit times will be the same, for a Practice Test, Daily Training Pack, or any other grouped learning format.",
+          "$ref": "#/definitions/Timestamp"
+        },
+        "answerDurationMs": {
+          "description": "The total time a player spent answering a question, in milliseconds. This counts the number of milliseconds a question was up on the screen, at answer time. This may be smaller than the gap between startTimeMs and submitTimeMs, because a player can switch in and out of a question in a grouped leaerning format like Daily Training or Practice Tests.",
+          "$ref": "#/definitions/Duration"
+        }
+      },
+      "required": [ "questionId", "answer", "startTimeMs", "submitTimeMs", "answerDurationMs"],
+      "additionalProperties": false
+    },
+
+    "Timestamp": {
+      "type": "integer",
+      "minimum": 1325376000000
+    },
+    "Duration": {
+      "type": "integer",
+      "minimum": 0
+    },
+    "SkippedAnswerValue": {
+      "description": "Skipped questions were seen by the student, but they chose not to answer them. Abandoned questions were scheduled by the content publisher, but were discarded by the play2prep system, for example: one of two question options in every Ask &amp; Answer round is discarded.",
+      "properties": {
+        "skipped": {
+          "enum": ["SKIPPED", "DISCARDED"]
+        }
+      },
+      "required": [ "skipped" ],
+      "additionalProperties": false
+    },
+    "MultipleChoiceAnswerValue": {
+      "properties": {
+        "mcAnswer": {
+          "type": "string",
+          "pattern": "^[A-Z]$"
+        }
+      },
+      "required": [ "mcAnswer" ],
+      "additionalProperties": false
+    },
+    "SATGridInAnswerValue": {
+      "description": "Limited form of student produced response, for some SAT math questions, corresponding to the SAT_GRIDIN answer format type. There may be more than one right answer to this kind of question.",
+      "properties": {
+        "gridInAnswer": {
+          "type": "string",
+          "pattern": "^[\\./0-9]{1,5}$"
+        }
+      },
+      "required": [ "gridInAnswer" ],
+      "additionalProperties": false
+    },
+    "StudentProducedResponseAnswerValue": {
+      "description": "Free form answer format corresponding to the SPR answer format type. There may be more than one right answer to this kind of question.",
+      "properties": {
+        "sprAnswer": {
+          "type": "string"
+        }
+      },
+      "required": [ "sprAnswer" ],
+      "additionalProperties": false
+    },
+    "QuestionId": {
+      "type": "string",
+      "pattern": "^[a-zA-Z0-9\\-_\\.]+$"
+    }
+  }
+}</code></pre><p><strong>Example</strong>:</p><pre><code>{
+  "answers": [
+    {
+      "questionId": "SAT.1309",
+      "startTimeMs": 1424809938000,
+      "submitTimeMs": 1424809963000,
+      "answerDurationMs": 25000,
+      "answer": {
+        "mcAnswer": "C"
+      }
+    },
+    {
+      "questionId": "SAT.1345",
+      "startTimeMs": 1424810137000,
+      "submitTimeMs": 1424810156000,
+      "answerDurationMs": 19000,
+      "answer": {
+        "sprAnswer": "isosceles triangles"
+      }
+    },
+    {
+      "questionId": "SAT.1321",
+      "startTimeMs": 1424810448000,
+      "submitTimeMs": 1424810510000,
+      "answerDurationMs": 62000,
+      "answer": {
+        "skipped": "SKIPPED"
+      }
+    },
+    {
+      "questionId": "SAT.1321",
+      "startTimeMs": 1424810448000,
+      "submitTimeMs": 1424810448000,
+      "answerDurationMs": 0,
+      "answer": {
+        "skipped": "DISCARDED"
+      }
+    }
+  ]
+}
+</code></pre></div></div></div></div></div></div></div></div></div></div></div><div class="col-md-3"><div id="sidebar" class="hidden-print affix" role="complementary"><ul class="nav nav-pills nav-stacked"><li><a href="#_questions">Question Content</a></li><li><a href="#_schedules">Question Schedules</a></li><li><a href="#_answers">Answers</a></li></ul></div></div></div></div></body></html>
