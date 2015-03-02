@@ -27,6 +27,9 @@
         "categories": {
           "description": "Each pack may have its own category 'theme', that informs the icon play2prep uses to represent this pack, in the app.",
           "$ref": "#/definitions/CategoryStack"
+        },
+        "theme": {
+          "$ref": "http://play2prep.github.io/content-integration-schema/question-content-schema.json#/definitions/CategoryTheme"
         }
       },
       "required": [ "categories", "questions" ],
