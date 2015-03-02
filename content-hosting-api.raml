@@ -10,7 +10,7 @@ documentation:
       Academic content publishers who want global distribution through the play2prep Android and iOS app can integrate with play2prep via the Hosted Content Publisher API.  Publishers can gain online and offline engagement in multiple languages, and integrate adaptive learning platforms with play2prep so that they can drive play2prep's Daily Training schedule, and all other learning formats, off of their personalized adaptive learning intelligence. To integrate content and adaptive learning, the Content Publisher hosts a content server implementing this API. The play2prep server calls to the hosted content server, to fetch new questions for students, and report their answers back to the publisher.
 
 schemas:
-  - Question: !include https://gist.githubusercontent.com/massaroni/9514fc1e84054406fafb/raw/78bff2444c2735d8051196c4b2c3f0d7233fe064/question-content-schema.json
+  - Question: !include https://gist.githubusercontent.com/massaroni/9514fc1e84054406fafb/raw/8d011718a82858d3d9173d3b50c6110ccdceffaa/question-content-schema.json
     # also see (http://play2prep.github.io/content-integration-schema/question-content-schema.json)
   - Schedule: !include https://gist.githubusercontent.com/massaroni/7e6a6129d24992dbee5d/raw/4790559a7f6cf6a37e96cf1b550efca1c784b139/question-schedule-schema.json
     # also see (http://play2prep.github.io/content-integration-schema/question-schedule-schema.json)
@@ -18,7 +18,7 @@ schemas:
 
 /questions:
   displayName: Question Content
-  description: Publisher provides the full question content, including text, images, answer key, explanation, and metadata.  Play2prep caches question content forever, and will request the contents of any question it doesn't have in the cache.  This process provides enough freedom for the content publisher to add new questions and categories on the fly, without coordinating with play2prep.
+  description: The publisher provides the full question content, including text, images, answer key, explanation, and metadata.  A Question Content Object is a JSON object containing HTML fragments, supporting inline images and inline ASCII Math, LaTeX, and MathML.  All Question Content Objects are fully self-contained, and may not reference any external assets.  Play2prep caches question content forever, and will request the contents of any question it doesn't have in the cache.  This process provides enough freedom for the content publisher to add new questions and categories on the fly, without coordinating with play2prep.
   /{questionId}:
     get:
       responses:
