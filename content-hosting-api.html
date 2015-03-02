@@ -371,7 +371,7 @@
       "pattern": "^[a-zA-Z0-9\\-_\\.]+$"
     },
     "HtmlFragment": {
-      "description": "Supports limited markup for italics, bold, underlining, and highlighting. All images must have inline data content urls, so that each question content object is fully self contained.",
+      "description": "Supports limited markup for italics, bold, underlining, and highlighting. All images must have inline data content urls, so that each question content object is fully self contained. This supports inline MathML, LaTeX, and ASCII Math.",
       "type": "string",
       "pattern": "^([^&lt;&gt;]*(&lt;img src=\"data:image\\/.*\"\\/?&gt;)?((&lt;(u|i|strong|em|b|mark)&gt;)*[^&lt;&gt;]*(&lt;\\/\\5&gt;))*(&lt;math.*&lt;\\/math&gt;)?)*$"
     }
@@ -448,7 +448,9 @@
           "theory of morality. So impressed was Kant by",
           "the insights of Rousseau that he hung a picture",
           "of him on the wall of his study, convinced that",
-          "Rousseau was the Newton of the moral world"
+          "Rousseau was the Newton of the moral world",
+          "This is an odd place for a math example, but here&#x27;s a LaTeX example: When $a \\ne 0$, there are two solutions to \\(ax^2 + bx + c = 0\\) and they are $$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}.$$",
+          "and here&#x27;s a MathML example: &lt;math&gt;&lt;msqrt&gt;&lt;mn&gt;2&lt;/mn&gt;&lt;/msqrt&gt;&lt;/math&gt;"
         ]
       }, {
         "titleHtml": "Passage 2",
