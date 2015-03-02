@@ -42,6 +42,7 @@
       ]
     ],
     "difficulty": 3,
+    "theme": "READING",
     "time": {
       "answerTimeSec": 180,
       "deltaPct": 25
