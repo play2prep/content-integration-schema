@@ -197,6 +197,9 @@
             "$ref": "#/definitions/QuestionId"
           }
         },
+        "theme": {
+          "$ref": "#/definitions/CategoryTheme"
+        },
         "time": {
           "type": "object",
           "properties": {
@@ -348,6 +351,16 @@
       "items": {
         "$ref": "#/definitions/CategoryName"
       }
+    },
+    "CategoryTheme": {
+      "description": "This theme determines the icon in the play2prep app, in the Daily Training schedule on the Home Screen and Daily Training Screen, and the Past Tests Screen.",
+      "enum": [
+        "MATH",
+        "SCIENCE",
+        "READING",
+        "WRITING",
+        "MIX"
+      ]
     },
     "CategoryName": {
       "description": "This is a category display name students see in the play2prep app.  There&#x27;s no &#x27;id&#x27; symbology for categories, and all references to categories in the Content Publisher API are made with their full display names.",
@@ -501,6 +514,9 @@
         "categories": {
           "description": "Each pack may have its own category &#x27;theme&#x27;, that informs the icon play2prep uses to represent this pack, in the app.",
           "$ref": "#/definitions/CategoryStack"
+        },
+        "theme": {
+          "$ref": "http://play2prep.github.io/content-integration-schema/question-content-schema.json#/definitions/CategoryTheme"
         }
       },
       "required": [ "categories", "questions" ],
