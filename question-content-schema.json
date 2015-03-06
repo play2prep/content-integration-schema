@@ -19,13 +19,6 @@
         {"$ref": "#/definitions/StudentProducedResponseAnswerKey"}
       ]
     },
-    "answerFormat": {
-      "enum": [
-        "MC",
-        "SAT_GRID",
-        "SPR"
-      ]
-    },
     "mcOptions": {
       "description": "List of multiple choice answer options. This is required for all questions with the MC answer format.",
       "type": "array",
@@ -52,7 +45,6 @@
   "required": [
     "id",
     "answerKey",
-    "answerFormat",
     "explanationHtml",
     "mainQuestionHtml",
     "hintHtml",
@@ -68,6 +60,13 @@
         "testType": {
           "type": "string",
           "pattern": "^\\w+$"
+        },
+        "answerFormat": {
+          "enum": [
+            "MC",
+            "SAT_GRID",
+            "SPR"
+          ]
         },
         "difficulty": {
           "type": "integer",
@@ -102,6 +101,7 @@
         }
       },
       "required": [
+        "answerFormat",
         "categories",
         "testType",
         "time",
