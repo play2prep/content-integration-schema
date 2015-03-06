@@ -176,13 +176,6 @@
           "type": "string",
           "pattern": "^\\w+$"
         },
-        "answerFormat": {
-          "enum": [
-            "MC",
-            "SAT_GRID",
-            "SPR"
-          ]
-        },
         "difficulty": {
           "type": "integer",
           "minimum": 1,
@@ -216,7 +209,6 @@
         }
       },
       "required": [
-        "answerFormat",
         "categories",
         "testType",
         "time",
