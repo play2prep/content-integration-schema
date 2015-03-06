@@ -84,12 +84,12 @@
               "description": "Max recommended time to answer this question.",
               "$ref": "#/definitions/TimeSeconds"
             },
-            "deltaPct": {
-              "description": "Gamified mechanisms adding or removing time to the clock will use this % of answerTimeSec.",
-              "$ref": "#/definitions/Percent"
+            "deltaTimeSec": {
+              "description": "The 2 player game's add-time and subtract-time features would add or subtract this number of seconds from the clock.",
+              "$ref": "#/definitions/TimeSeconds"
             }
           },
-          "required": ["answerTimeSec", "deltaPct"],
+          "required": ["answerTimeSec", "deltaTimeSec"],
           "additionalProperties": false
         }
       },
@@ -249,12 +249,6 @@
       "type": "integer",
       "minimum": 1,
       "maximum": 18000
-    },
-    "Percent": {
-      "description": "0-100%, with integer precision.",
-      "type": "integer",
-      "minimum": 0,
-      "maximum": 100
     },
     "QuestionId": {
       "type": "string",

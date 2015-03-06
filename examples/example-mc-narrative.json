@@ -44,7 +44,7 @@
     "theme": "READING",
     "time": {
       "answerTimeSec": 180,
-      "deltaPct": 25
+      "deltaTimeSec": 45
     }
   },
   "display": {
