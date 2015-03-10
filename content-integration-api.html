@@ -145,9 +145,6 @@
     "instructionsHtml": {
       "$ref": "#/definitions/HtmlFragment"
     },
-    "mainQuestionHtml": {
-      "$ref": "#/definitions/HtmlFragment"
-    },
     "explanationHtml": {
       "$ref": "#/definitions/HtmlFragment"
     },
@@ -161,7 +158,6 @@
     "id",
     "answerKey",
     "explanationHtml",
-    "mainQuestionHtml",
     "hintHtml",
     "meta"
   ],
@@ -217,6 +213,7 @@
       "additionalProperties": false
     },
     "PlainParagraphs": {
+      "description": "Actionable question, displayed with the answer input view. These paragraphs can contain images and math equations, like all other html fragments, and they&#x27;re laid out in sequence, spaced out from each other, in the question view.",
       "properties": {
         "htmlParagraphs": {
           "type": "array",
@@ -231,7 +228,7 @@
       "required": ["htmlParagraphs"]
     },
     "Narrative": {
-      "description": "This is a sequence of passages, and it&#x27;s so large that it&#x27;s displayed separately from the question instructions and answer input.",
+      "description": "This is a sequence of passages accompanying the question, and it&#x27;s so large that it&#x27;s displayed separately from the question instructions and answer input.",
       "properties": {
         "passages": {
           "type": "array",
@@ -239,7 +236,12 @@
           "items": {"$ref": "#/definitions/Passage"}
         },
         "descriptionHtml": {
+          "description": "This describes the passages, and it&#x27;s displayed with the passages as a header.",
           "$ref": "#/definitions/HtmlFragment"
+        },
+        "question": {
+          "description": "Actionable question, displayed with the instructions, near the answer input view.",
+          "$ref": "#/definitions/PlainParagraphs"
         }
       },
       "required": [ "passages" ],
