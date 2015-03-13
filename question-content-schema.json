@@ -244,7 +244,7 @@
     "CategoryName": {
       "description": "This is a category display name students see in the play2prep app.  There's no 'id' symbology for categories, and all references to categories in the Content Publisher API are made with their full display names.",
       "type": "string",
-      "pattern": "^\\w+(.*\\w+)*$"
+      "pattern": "^\\w+([\\s-]+\\w+)*$"
     },
     "TimeSeconds": {
       "description": "This model represents timings related to the time it takes to answer a question, in seconds.",
