@@ -77,7 +77,8 @@
           "of him on the wall of his study, convinced that",
           "Rousseau was the Newton of the moral world.",
           "This is an odd place for a math example, but here's a LaTeX example: When $a \\ne 0$, there are two solutions to \\(ax^2 + bx + c = 0\\) and they are $$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}.$$",
-          "and here's a MathML example: <math><msqrt><mn>2</mn></msqrt></math>"
+          "and here's a MathML example: <math><msqrt><mn>2</mn></msqrt></math>",
+          "and here's a base64 inline image example: <img src=\"data:image/png;base64,iVBORw0KGgoAAAANSUhEUgAAAAUAAAAFCAYAAACNbyblAAAAHE+lEQVQI12P4//8/w38GIAXDIBKE0DHxgljNBAAO9TXL0Y4OHwAAAABJRU5ErkJggg==\" />"
         ]
       }, {
         "titleHtml": "Passage 2",
