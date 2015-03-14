@@ -91,6 +91,7 @@
       },
       "required": [
         "categories",
+        "theme",
         "testType",
         "time",
         "difficulty"
