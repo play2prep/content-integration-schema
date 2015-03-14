@@ -260,7 +260,7 @@
     "HtmlFragment": {
       "description": "Supports limited markup for italics, bold, underlining, and highlighting. All images must have inline data content urls, so that each question content object is fully self contained. This supports inline MathML, LaTeX, and ASCII Math.",
       "type": "string",
-      "pattern": "^([^<>]?(<img src=\"data:image\\/[^\"]+\"\\s*\\/?>)?(<math.*<\\/math>)?(<\\/(u|i|strong|span|em|b|mark|p|br|sup)\\s*\\/?>)?(<(u|i|strong|span|em|b|mark|p|br|sup)\\s*\\/?>)?)*$"
+      "pattern": "^([^<>]?(<img src=\"data:image\\/[^\"]+\"\\s*\\/?>)?(<math.*<\\/math>)?(<\\/(u|i|strong|span|em|b|mark|p|br|sup|sub)\\s*\\/?>)?(<(u|i|strong|span|em|b|mark|p|br|sup|sub)\\s*\\/?>)?)*$"
     }
   }
 }
