@@ -194,12 +194,14 @@
           "type": "array",
           "minItems": 1,
           "items": {
-            "type": "string",
-            "pattern": "^[\\./0-9]{1,5}$"
+            "oneOf": [
+              {"$ref": "#/definitions/NumericAnswerValueRange"},
+              {"$ref": "#/definitions/SATGridInAnswerValue"}
+            ]
           }
         }
       },
-      "required": ["correctAnswers"],
+      "required": ["correctGridInAnswers"],
       "additionalProperties": false
     },
     "StudentProducedResponseAnswerKey": {
@@ -241,6 +243,16 @@
         "WRITING",
         "MIX"
       ]
+    },
+    "NumericAnswerValueRange": {
+      "description": "Some sat grid-in answer can have any numeric value in a given range, that can be expressed as an inequality like '4.5 < x < 5.7' .",
+      "type": "string",
+      "pattern": "^\\s*([0-9](\\.[0-9]+)?)\\s*(<=?)\\s*[a-zA-Z]\\s*(<=?)?\\s*([0-9](\\.[0-9]+)?)\\s*$"
+    },
+    "SATGridInAnswerValue": {
+      "description": "This represents a concrete, acceptable SAT grid-in answer value, like 4/3, 2.5, 1, etc.",
+      "type": "string",
+      "pattern": "^[\\.\\/0-9]{1,5}$"
     },
     "CategoryName": {
       "description": "This is a category display name students see in the play2prep app.  There's no 'id' symbology for categories, and all references to categories in the Content Publisher API are made with their full display names.",

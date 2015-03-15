@@ -1,0 +1,25 @@
+{
+  "id": "SAT_T09_S06_MATH.Q07",
+  "answerKey": {
+    "correctGridInAnswers": [
+      "1.22",
+      "1 < x < 5.64"
+    ]
+  },
+  "explanationHtml": "This is an example of how to represent an SAT GridIn answer key.",
+  "instructionsHtml": "This is an example of how to represent an SAT GridIn answer key.",
+  "hintHtml": "This is an example of how to represent an SAT GridIn answer key.",
+  "meta": {
+    "testType": "SAT",
+    "categories": [["Math"]],
+    "difficulty": 3,
+    "theme": "MATH",
+    "time": {
+      "answerTimeSec": 180,
+      "deltaTimeSec": 45
+    }
+  },
+  "display": {
+    "htmlParagraphs": ["This is an example of how to represent an SAT GridIn answer key."]
+  }
+}
