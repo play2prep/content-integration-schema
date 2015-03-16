@@ -309,12 +309,14 @@
           "type": "array",
           "minItems": 1,
           "items": {
-            "type": "string",
-            "pattern": "^[\\./0-9]{1,5}$"
+            "oneOf": [
+              {"$ref": "#/definitions/NumericAnswerValueRange"},
+              {"$ref": "#/definitions/SATGridInAnswerValue"}
+            ]
           }
         }
       },
-      "required": ["correctAnswers"],
+      "required": ["correctGridInAnswers"],
       "additionalProperties": false
     },
     "StudentProducedResponseAnswerKey": {
@@ -340,11 +342,14 @@
       }
     },
     "CategoryStack": {
-      "description": "This is interpreted as a hierarchical stack of category names. It informs the play2prep My Progress screen, where students can drill down into their achievement stats through levels of categories. The first name in the array is the top level category, and each subsequent item is a level nested under the preceeding item.",
+      "description": "This is interpreted as a hierarchical stack of category names. It informs the play2prep My Progress screen, where students can drill down into their achievement stats through levels of categories. The first name in the array is the top level category, and each subsequent item is a level nested under the preceeding item. In case the top level category encapsulates a mix of themes, each category can optionally have a theme attached, so that they will get the appropriate icons and styling in the app, regardless of their ancestor categories&#x27; themes.",
       "type": "array",
       "minItems": 1,
       "items": {
-        "$ref": "#/definitions/CategoryName"
+        "oneOf": [
+          {"$ref": "#/definitions/CategoryInfo"},
+          {"$ref": "#/definitions/CategoryName"}
+        ]
       }
     },
     "CategoryTheme": {
@@ -357,10 +362,34 @@
         "MIX"
       ]
     },
+    "NumericAnswerValueRange": {
+      "description": "Some sat grid-in answer can have any numeric value in a given range, that can be expressed as an inequality like &#x27;4.5 &lt; x &lt; 5.7&#x27; .",
+      "type": "string",
+      "pattern": "^\\s*([0-9](\\.[0-9]+)?)\\s*(&lt;=?)\\s*[a-zA-Z]\\s*(&lt;=?)?\\s*([0-9](\\.[0-9]+)?)\\s*$"
+    },
+    "SATGridInAnswerValue": {
+      "description": "This represents a concrete, acceptable SAT grid-in answer value, like 4/3, 2.5, 1, etc.",
+      "type": "string",
+      "pattern": "^[\\.\\/0-9]{1,5}$"
+    },
     "CategoryName": {
       "description": "This is a category display name students see in the play2prep app.  There&#x27;s no &#x27;id&#x27; symbology for categories, and all references to categories in the Content Publisher API are made with their full display names.",
       "type": "string",
-      "pattern": "^\\w+([\\s-]+\\w+)*$"
+      "pattern": "^\\w+([\\s-&#x27;,/]+[\\w/\\.\\&#x27;-,/)\\(]+)*$"
+    },
+    "CategoryInfo": {
+      "description": "This pairs a theme with a category name, so that you can specialize the icons in the app, even if your top level category is a mix of themes.",
+      "type": "object",
+      "properties": {
+        "name": {
+          "$ref": "#/definitions/CategoryName"
+        },
+        "theme": {
+          "$ref": "#/definitions/CategoryTheme"
+        }
+      },
+      "required": ["name", "theme"],
+      "additionalProperties": false
     },
     "TimeSeconds": {
       "description": "This model represents timings related to the time it takes to answer a question, in seconds.",
@@ -375,7 +404,7 @@
     "HtmlFragment": {
       "description": "Supports limited markup for italics, bold, underlining, and highlighting. All images must have inline data content urls, so that each question content object is fully self contained. This supports inline MathML, LaTeX, and ASCII Math.",
       "type": "string",
-      "pattern": "^([^&lt;&gt;]?(&lt;img src=\"data:image\\/[^\"]+\"\\s*\\/?&gt;)?(&lt;math.*&lt;\\/math&gt;)?(&lt;\\/(u|i|strong|em|b|mark|p|br|sup)\\s*\\/?&gt;)?(&lt;(u|i|strong|em|b|mark|p|br|sup)\\s*\\/?&gt;)?)*$"
+      "pattern": "^([^&lt;&gt;]?(&lt;img src=\"data:image\\/[^\"]+\"\\s*\\/?&gt;)?(&lt;math.*&lt;\\/math&gt;)?(&lt;\\/(u|i|strong|span|em|b|mark|p|br|sup|sub)\\s*\\/?&gt;)?(&lt;(u|i|strong|span|em|b|mark|p|br|sup|sub)\\s*\\/?&gt;)?)*$"
     }
   }
 }</code></pre><p><strong>Example</strong>:</p><pre><code>{
