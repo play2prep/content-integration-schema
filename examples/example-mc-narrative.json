@@ -42,8 +42,9 @@
         "Pronoun (Agreement And Ambiguous)",
         "Active Vs. Passive Voice"
       ], [
-        "Another Top Level Category",
-        "Ratios, Rates, and Proportions"
+        {"name": "Another Top Level Category", "theme": "MIX"},
+        {"name": "Ratios, Rates, and Proportions", "theme": "MATH"},
+        "Rates"
       ]
     ],
     "difficulty": 3,
