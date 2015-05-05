@@ -80,12 +80,16 @@
               "description": "Max recommended time to answer this question.",
               "$ref": "#/definitions/TimeSeconds"
             },
-            "deltaTimeSec": {
-              "description": "The 2 player game's add-time and subtract-time features would add or subtract this number of seconds from the clock.",
+            "decreaseTimeSec": {
+              "description": "The 2 player game's subtract-time feature subtract this number of seconds from the clock.",
+              "$ref": "#/definitions/TimeSeconds"
+            },
+            "increaseTimeSec": {
+              "description": "The 2 player game's add-time feature would add this number of seconds to the clock.",
               "$ref": "#/definitions/TimeSeconds"
             }
           },
-          "required": ["answerTimeSec", "deltaTimeSec"],
+          "required": ["answerTimeSec", "decreaseTimeSec", "increaseTimeSec"],
           "additionalProperties": false
         }
       },
