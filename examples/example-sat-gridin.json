@@ -16,7 +16,8 @@
     "theme": "MATH",
     "time": {
       "answerTimeSec": 180,
-      "deltaTimeSec": 45
+      "increaseTimeSec": 30,
+      "decreaseTimeSec": 45
     }
   },
   "display": {
