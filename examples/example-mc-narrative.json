@@ -81,7 +81,7 @@
           "regarding the theory of knowledge, it was <p>example: <sup>superscript text</sup></p> <sub>subscript text</sub>",
           "Rousseau who <br/>showed him the way to a new",
           "theory of <br />morality. So impressed was Kant by",
-          "the insights <br > of Rousseau that he hung a picture",
+          "the insights <br > of Rousseau that he <p align=\"justify\">hung a picture</p>",
           "of him on <br> the wall of his study, convinced that",
           "Rousseau <p>was</p> the Newton of the moral world.",
           "This is an odd place for a math example, but here's a LaTeX example: When $a \\ne 0$, there are two solutions to \\(ax^2 + bx + c = 0\\) and they are $$x = {-b \\pm \\sqrt{b^2-4ac} \\over 2a}.$$",
